@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index des Catégories{% endblock %}
+
+{% block body %}
+    <h1>Index des Catégories</h1>
+
+        <div class="input-group mt-3">
+    
+            {% include "components/_search_data.html.twig" %}
+            <a class="btn btn-outline-primary" style="height: 50%" href="{{ path('app_back_category_index')}}">Effacer la recherche</a>
+        </div>
+        <div class="new_button">
+            <a class="btn btn-success mt-3" href="{{ path('app_back_category_new') }}">Créer une nouvelle catégorie</a>
+        </div>
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Créée le</th>
+                <th>Modifiée le</th>
+                <th>Slug</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>{{ category.createdAt ? category.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ category.updatedAt ? category.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ category.slug }}</td>
+                <td>
+                    <a class="btn btn-primary btn-sm mb-1" href="{{ path('app_back_category_show', {'id': category.id}) }}">Voir</a>
+                    <a class="btn btn-warning btn-sm mb-1" href="{{ path('app_back_category_edit', {'id': category.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucun résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Quiz{% endblock %}
+
+{% block body %}
+    <h1>Modifier un quiz</h1>
+
+    {{ include('back/quiz/_form.html.twig', {'button_label': 'Modifier'}) }}
+    {{ include('back/quiz/_delete_form.html.twig') }}
+    <a class="btn btn-primary btn-sm mb-3" href="{{ path('app_back_quiz_index') }}">Retourner à la liste des quiz</a>
+
+{% endblock %}

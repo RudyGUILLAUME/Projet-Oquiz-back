@@ -1,0 +1,15 @@
+{% extends 'bundles/TwigBundle/Exception/base.html.twig' %}
+
+{% block title %}Erreur serveur{% endblock %}
+
+{% block subtitle %}Oups!{% endblock %}
+
+{% block message %}Erreur serveur:{% endblock %}
+
+{% block description %}Le serveur a rencontré une erreur interne.{% endblock %}
+
+{% block link %}
+<a class="btn btn-lg btn-warning mt-1" href="{{path('app_back_home')}}">Retourner à la page d'accueil</a>
+{% endblock %}
+
+{% block picture %}{% endblock %}

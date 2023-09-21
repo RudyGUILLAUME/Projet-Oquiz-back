@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un quiz{% endblock %}
+
+{% block body %}
+    <h1>Créer un nouveau quiz</h1>
+
+    {{ include('back/quiz/_form.html.twig') }}
+
+    <a class="btn btn-primary btn-sm mb-3" href="{{ path('app_back_quiz_index') }}">Retourner à la liste des quiz</a>
+{% endblock %}

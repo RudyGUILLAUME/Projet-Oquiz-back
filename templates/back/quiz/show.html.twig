@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quiz - {{ quiz.name }}{% endblock %}
+
+{% block body %}
+    <h1>Quiz - {{ quiz.name }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ quiz.id }}</td>
+            </tr>
+            <tr>
+                <th>Catégorie</th>
+                <td>{{ quiz.category.name }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ quiz.picture }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ quiz.description }}</td>
+            </tr>
+            <tr>
+                <th>Crée le</th>
+                <td>{{ quiz.createdAt ? quiz.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Modifié le</th>
+                <td>{{ quiz.updatedAt ? quiz.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ quiz.slug }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-warning btn-sm mb-1" href="{{ path('app_back_quiz_edit', {'id': quiz.id}) }}">Modifier</a>
+    {{ include('back/quiz/_delete_form.html.twig') }}
+    <div>
+    <a class="btn btn-primary btn-sm mb-1" href="{{ path('app_back_quiz_index') }}">Retourner à la liste des catégories</a>
+    </div>
+
+    
+{% endblock %}

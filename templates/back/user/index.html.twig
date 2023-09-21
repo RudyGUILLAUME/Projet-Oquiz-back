@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index des Utilisateurs{% endblock %}
+
+{% block body %}
+    <h1>Index des Utilisateurs</h1>
+
+        <div class="input-group mt-3">
+            {% include "components/_search_data.html.twig" %}
+            <a class="btn btn-outline-primary" style="height: 50%" href="{{ path('app_back_user_index')}}">Effacer la recherche</a>
+        </div>
+        <div class="new_button">
+            <a class="btn btn-success mt-3" href="{{ path('app_back_user_new') }}">Créer un nouvel utilisateur</a>
+        </div>
+
+
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Pseudo</th>
+                <th>E-mail</th>
+                <th>Rôles</th>
+                <th>Crée le</th>
+                <th>Modifié le</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a class="btn btn-primary btn-sm mb-1" href="{{ path('app_back_user_show', {'id': user.id}) }}">Voir</a>
+                    <a class="btn btn-warning btn-sm mb-1" href="{{ path('app_back_user_edit', {'id': user.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">Aucun résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

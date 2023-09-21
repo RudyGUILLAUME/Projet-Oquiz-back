@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Définir les variables de couleurs -> charte graphique */
+:root {
+  --red-color: #6b0848;
+  --orange-color: #f2921d;
+  --white-color: #ffffff;
+  --yellow-color: #f2cd5c;
+  --white-color-light: #aaa;
+}
+
+/* CSS body */
+body {
+  background-color: #e7f2fd;
+}
+
+/* navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
+  background-color: var(--red-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  box-shadow: 0 0 2px var(--white-color-light);
+  z-index: 6;
+}
+
+.logo-oquiz {
+  width : 50px;
+  height: 50px;
+}
+
+.oquiz_title {
+  margin-top: 7px;
+}
+
+.welcome {
+  font-size:large;
+  margin-top: 10px;
+  color: var(--orange-color);
+}
+
+.logo_item {
+  display: flex;
+  align-items: left;
+  column-gap: 10px;
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--orange-color);
+  z-index: 10;
+}
+
+.navbar img {
+  width: 55px;
+  height: 55px;
+}
+
+.navbar_content {
+  display: flex;
+  align-items: center;
+  column-gap: 25px;
+}
+
+.navbar_content i {
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--white-color);
+}
+
+/* sidebar */
+.sidebar {
+  background-color: var(--red-color);
+  width: 260px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding: 80px 20px;
+  box-shadow: 0 0 1px var(--white-color-light);
+  transition: all 0.5s ease;
+  z-index: 5;
+}
+
+.menu_content {
+  position: relative;
+}
+
+.menu_title {
+  margin: 15px 0;
+  padding: 0 20px;
+  font-size: 25px;
+}
+
+.menu_dashboard::before {
+  content: "Dashboard";
+}
+
+.menu_title::before {
+  color: var(--white-color);
+  white-space: nowrap;
+}
+
+.menu_items {
+  padding: 0;
+  list-style: none;
+}
+
+.navlink {
+  color: var(--white-color);
+  text-decoration: none;
+}
+
+.sidebar .nav_link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 4px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--white-color);
+  white-space: nowrap;
+}
+
+.nav_link:hover {
+  color: var(--red-color);
+  background: var(--orange-color);
+}
+
+.main_content {
+  margin-top: 30px;
+  margin-left: 300px;
+}
+
+#question {
+  margin-right: 80px;
+}
+  
+#question_answers {
+  display: flex;
+}
+
+.img-fluid {
+  width: 500px;
+  margin: 100px;
+  text-align: center;
+  animation: explode 1.8s infinite alternate; 
+}
+
+.login-form {
+  display: block;
+  margin-left: 380px;
+  margin-top: 150px;
+}
+
+/* bloc "response" */
+.correct-answer img {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 2px;
+  margin-left: 2px;
+}
+
+.false-answer img {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 2px;
+}
+/* gestion des form answer dans le form question */
+#answers-container {
+  display: flex;
+}
+
+#question_answers_0, #question_answers_1, #question_answers_2, #question_answers_3, #question_answers_4  {
+  width: 250px;
+  margin-right: 10px;
+}
+
+.mb-3 {
+  margin-right: 20px;
+}
+
+@keyframes explode {
+  0% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1.5);
+  }
+}
+
+
+
+
+
+

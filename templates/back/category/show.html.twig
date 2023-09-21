@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégorie - {{ category.name }}{% endblock %}
+
+{% block body %}
+    <h1>Catégorie - {{ category.name }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ category.id }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ category.picture }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ category.description }}</td>
+            </tr>
+            <tr>
+                <th>Créée le</th>
+                <td>{{ category.createdAt ? category.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Modifiée le</th>
+                <td>{{ category.updatedAt ? category.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ category.slug }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <a class="btn btn-warning btn-sm mb-1" href="{{ path('app_back_category_edit', {'id': category.id}) }}">Modifier</a>
+    {{ include('back/category/_delete_form.html.twig') }}
+    <div>
+    <a class="btn btn-primary btn-sm mb-1" href="{{ path('app_back_category_index') }}">Retourner à la liste des catégories</a>
+    </div>
+    
+{% endblock %}

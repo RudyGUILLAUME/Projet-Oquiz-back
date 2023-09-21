@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index des Quiz{% endblock %}
+
+{% block body %}
+
+{# <div class="main_content"></div> #}
+    <h1>Index des Quiz</h1>
+        <div class="input-group mt-3">
+            {% include "components/_search_data.html.twig" %}
+            <a class="btn btn-outline-primary" style="height: 50%" href="{{ path('app_back_quiz_index')}}">Effacer la recherche</a>
+        </div>
+        <div class="new_button">
+            <a class="btn btn-success mt-3" href="{{ path('app_back_quiz_new') }}">Créer un nouveau quiz</a>
+        </div>
+
+
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Slug</th>
+                <th>Catégorie</th>
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for quiz in quizzes %}
+            <tr>
+                <td>{{ quiz.id }}</td>
+                <td>{{ quiz.name }}</td>
+                <td>{{ quiz.slug }}</td>
+                <td>{{ quiz.category.name }}</td>
+
+                <td>
+                    <a class="btn btn-primary btn-sm" href="{{ path('app_back_quiz_show', {'id': quiz.id}) }}">Voir</a>
+                    <a class="btn btn-warning btn-sm" href="{{ path('app_back_quiz_edit', {'id': quiz.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">Aucun résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    {# </div> #} 
+
+{% endblock %}

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Our custom CSS -->
+    {% block css_user %}        
+    <link rel="stylesheet" href="{{ asset("css/oquiz-back.css") }}">
+    {% endblock %}
+
+    {% block css_base %}
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <!-- Bootstrap icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    {% endblock %}
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{ asset("images/logo-oquiz.png") }}" type="image/x-icon">
+
+    <title>{% block title %}O'Quiz{% endblock %}</title>
+
+</head>
+
+<body>
+
+    <!-- navbar -->
+    <nav class="navbar">
+      <div class="logo_item">
+          <img class="logo-oquiz" src="{{ asset("images/logo-oquiz.png") }}" alt="Logo O'Quiz">
+          <h2 class="oquiz_title">O'Quiz</h2>
+      </div>
+
+    <!-- logout & profile picture-->
+      <div class="navbar_content">
+        {% if app.user %}
+        {% if is_granted('ROLE_ADMIN') %}
+          <a class="btn btn-warning" href="{{ path('app_back_logout') }}">Se déconnecter</a>
+
+          <h4 class="welcome">Bienvenue, {{ app.user.username }}</h4>
+ 
+          <img src="{{ asset("images/profil/icone-bleue.png") }}" alt="image-profil" class="profile">
+        {% endif %}
+        {% endif %}
+      </div>
+    </nav>
+
+   <!-- sidebar -->
+    <nav class="sidebar">
+      {% if is_granted('ROLE_ADMIN') %}
+
+      <div class="menu_content">
+        <ul class="menu_items">
+          <div class="menu_title menu_dashboard"></div>
+            <!-- Home-menu-->
+            <li class = "item" > 
+                <div href="#" class="nav_link submenu_item">  
+                  <a class="navlink" href=" {{ path('app_back_home')}}"> Accueil </a>
+                </div>
+            </li>
+          
+          <!-- Category-menu -->
+            <li class="item">
+                <div href="#" class="nav_link submenu_item">
+                  <a class="navlink" href=" {{ path('app_back_category_index')}}"> Catégories </a>
+                </div>
+            </li>
+            
+            <!-- Quiz-menu -->
+            <li class="item">
+                <div href="#" class="nav_link submenu_item">
+                  <a class="navlink" href=" {{ path('app_back_quiz_index')}}"> Quiz </a>
+                </div>
+            </li>
+
+            <!-- Question-menu -->
+            <li class="item">
+                <div href="#" class="nav_link submenu_item">
+                  <a class="navlink" href=" {{ path('app_back_question_index')}}"> Questions </a>
+                </div>
+            </li>
+
+            <!-- Users-menu -->
+            <li class="item">
+                <div href="#" class="nav_link submenu_item">
+                  <a class="navlink" href=" {{ path('app_back_user_index')}}"> Utilisateurs</a>
+                </div>
+            </li>      
+      {% endif %}  
+        </div>
+    </nav>
+
+    <div class="main_content">
+      {% block body %}{% endblock %}
+    </div>
+    <!-- JavaScript -->
+    <script src="{{ asset("js/base.js") }}"></script>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script 
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous">
+    </script>
+    
+  </body>
+</html>

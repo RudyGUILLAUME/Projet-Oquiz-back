@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index des Questions{% endblock %}
+
+{% block body %}
+    <h1>Index des Questions</h1>
+
+        <div class="input-group mt-3">
+            {% include "components/_search_data.html.twig" %}
+            <a class="btn btn-outline-primary" style="height: 50%" href="{{ path('app_back_question_index')}}">Effacer la recherche</a>
+        </div>
+
+        <div class="new_button">
+            <a class="btn btn-success mt-3" href="{{ path('app_back_question_new') }}">Créer une nouvelle question</a>
+        </div>
+
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Question</th>
+                <th>Réponses</th>
+                <th>Quiz</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for question in questions %}
+            <tr>
+                <td>{{ question.id }}</td>
+                <td>{{ question.question }}</td>
+                <td>
+                    <ul class="list-unstyled">
+                        {% for answer in question.answers %}
+                            <li>
+                                <span class="{{ answer.isCorrect ? 'correct-answer' : 'false-answer' }}">
+                                    {% if answer.isCorrect %}
+                                        <img src="{{ asset('images/autres/tick-checked.png') }}" alt="Correct">
+                                    {% else %}
+                                        <img src="{{ asset('images/autres/tick-false.png') }}" alt="False">
+                                    {% endif %}
+                                    {{answer.response}}
+                                    {% endfor %}
+                            </li>
+                    </ul>
+                </td>
+                <td>{{ question.quiz.name }}</td>
+
+                <td>
+                    <a class="btn btn-primary btn-sm mb-1" href="{{ path('app_back_question_show', {'id': question.id}) }}">Voir</a>
+                    <a class="btn btn-warning btn-sm mb-1" href="{{ path('app_back_question_edit', {'id': question.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">Aucun résultat</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    {{ knp_pagination_render(questions) }}
+
+
+    
+{% endblock %}

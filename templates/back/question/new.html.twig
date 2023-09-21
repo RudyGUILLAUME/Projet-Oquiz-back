@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une question{% endblock %}
+
+{% block body %}
+    <h1>Créer une nouvelle question</h1>
+
+    {{ include('back/question/_form.html.twig', {'button_label': 'Valider'}) }}
+
+    <div>
+        <button id="addAnswerButton" type="button" class="btn btn-warning btn-sm mt-1" onclick="addAnswer()">Ajouter une réponse</button>
+    </div>
+    
+    <a class="btn btn-primary btn-sm mt-2" href="{{ path('app_back_question_index') }}">Retourner à la liste des questions</a>
+
+
+<script>
+    let clickCount = 0;
+
+    function addAnswer() {
+        
+        
+        const container = document.getElementById('answers-container');
+
+        // Obtenir le nombre d'éléments enfants du conteneur pour l'index du nouvel élément.
+        const index = container.children.length;
+                
+        // Récupérer le modèle HTML à partir de l'attribut data-prototype du conteneur et remplacer "__name__" par l'index.
+        const prototype = container.getAttribute('data-prototype').replace(/__name__/g, index);
+        const div = document.createElement('div');
+
+        div.innerHTML = prototype;
+        container.appendChild(div);
+
+        clickCount++;
+
+        if (clickCount >= 4) {
+            const addAnswerButton = document.getElementById('addAnswerButton');
+
+            // Désactiver le bouton en définissant l'attribut "disabled" à true
+            addAnswerButton.disabled = true;
+        }
+    }
+</script>
+
+{% endblock %}

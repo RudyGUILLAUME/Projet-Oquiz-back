@@ -1,0 +1,15 @@
+{% extends 'bundles/TwigBundle/Exception/base.html.twig' %}
+
+{% block title %}Accès non autorisé{% endblock %}
+
+{% block subtitle %}Oups!{% endblock %}
+
+{% block message %}Erreur 403:{% endblock %}
+
+{% block description %}Vous n'avez pas les droits nécessaires.{% endblock %}
+
+{% block link %}
+<a class="btn btn-lg btn-warning mt-1" href="{{path('app_back_login')}}">Retourner à la page de connexion</a>
+{% endblock %}
+
+{% block picture %}{% endblock %}
